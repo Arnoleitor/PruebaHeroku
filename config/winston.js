@@ -1,4 +1,5 @@
 const winston = require("winston");
+
 const logger = winston.createLogger({
     transports: [
         new winston.transports.File({ filename: 'logs/log-file.log' }),
@@ -9,6 +10,7 @@ const logger = winston.createLogger({
     ),
     exitOnError: false,
 });
+
 logger.stream = {
     write: function(message, encoding) {
         logger.info(message);

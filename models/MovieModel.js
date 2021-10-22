@@ -1,30 +1,30 @@
 let db = require('../db');
 
-MoviesModels = {};
+MovieModel = {};
 
-MoviesModels.findAll = () => db;
+MovieModel.findAll = () => db;
 
-MoviesModels.findById = (id) => db.find(movie => movie.id == id);
+MovieModel.findById = (id) => db.find(movie => movie.id == id);
 
-MoviesModels.post = (newMovie) => {
+MovieModel.post = (newMovie) => {
+    //let movies = db.filter(movie => movie.id != newMovie.id);
     db.push(newMovie);
     return newMovie;
 }
 
-
-MoviesModels.update = (newMovie) => {
-    
+MovieModel.update = (newMovie) => {
     let movies = db.filter(movie => movie.id != newMovie.id);
-    movies.push(movies);
+    movies.push(newMovie);
     db = movies;
     return newMovie;
 }
 
-MoviesModels.delete = (id) => {
-
-    let movies = db.filter(movie => movie.id !=id);
+MovieModel.delete = (id) => {
+    let movies = db.filter(movie => movie.id != id);
     db = movies;
-    return `Registro ${id} ha sido eliminado`;
+    return `Registro ${id} eliminado correctamente`;
 }
 
-module.exports = MoviesModels;
+
+module.exports = MovieModel;
+

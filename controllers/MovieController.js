@@ -1,37 +1,34 @@
+//Importo modelo de datos
 const movies = require('../models/MovieModel');
 
-MovieController = {};
+const MovieController = {};
 
 MovieController.getAll = (req, res) => {
-    res.json(MoviesModels.findAll());
-}
+    res.json(movies.findAll());
+};
 
 MovieController.getById = (req, res) => {
-    
-    const {id} = req.params;
-    res.json(MoviesModels.findById(id));
+    const id = req.params.id;
+    res.json(movies.findById(id));
 }
 
 MovieController.create = (req, res) => {
-    
     const id = req.body.id;
     const title = req.body.title;
     const movie = {id, title};
-    res.json(MoviesModels.post(movie));
-
-}
+    res.json(movies.post(movie));
+};
 
 MovieController.update = (req, res) => {
-    
     const id = req.params.id;
     const body = req.body;
-    res.json(MoviesModels.update({id,...body}));
-
-}
+    res.json(MovieModel.update({id, ...body}));
+};
 
 MovieController.delete = (req, res) => {
-    const id = req.params.id;
-    res.send(MoviesModels.delete(id));
-}
+    const {id} = req.params;
+    res.json(MovieModel.delete(id));
+};
 
-module.exports= MovieController;
+
+module.exports = MovieController;
